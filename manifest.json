@@ -1,35 +1,22 @@
 {
   "name": "OnHubAuthHelper",
-  "version": "1.1.0",
-  "manifest_version": 2,
+  "version": "2.0.0",
+  "manifest_version": 3,
+
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "https://accounts.google.com/ServiceLogin/webreauth?*",
-    "https://accounts.google.com/o/oauth2/programmatic_auth?*",
-    "cookies"
+    "identity"
   ],
+
+  "host_permissions": [
+    "https://accounts.google.com/*",
+    "https://oauth2.googleapis.com/*"
+  ],
+
   "background": {
-    "scripts": [
-      "js/jquery.min.js",
-      "js/getauthcode.js"
-    ],
-    "persistent": true
+    "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://accounts.google.com/ServiceLogin/webreauth*",
-        "https://accounts.google.com/o/oauth2/programmatic_auth*"
-      ],
-      "js": [
-        "js/jquery.min.js",
-        "js/loginPage.js",
-        "js/tokenPage.js"
-      ]
-    }
-  ],
-  "browser_action": {
+
+  "action": {
     "default_popup": "popup.html"
   }
 }
